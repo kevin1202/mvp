@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.welcome.WelcomeActivity">
+    tools:context=".view.activity.welcome.WelcomeActivity">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/iv_welcome"

@@ -7,9 +7,8 @@ import android.content.Context;
 import java.util.Stack;
 
 /**
- * Created by hpw on 16/10/28.
+ * app管理
  */
-
 public class AppManager {
     private static Stack<Activity> activityStack;
     private static AppManager instance;
