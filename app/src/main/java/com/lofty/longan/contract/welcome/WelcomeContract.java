@@ -1,4 +1,4 @@
-package com.lofty.longan.presenter.contract.welcome;
+package com.lofty.longan.contract.welcome;
 
 import com.lofty.longan.base.BaseView;
 

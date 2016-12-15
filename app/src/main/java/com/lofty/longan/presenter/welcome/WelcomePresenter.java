@@ -1,7 +1,7 @@
 package com.lofty.longan.presenter.welcome;
 
 import com.lofty.longan.base.RxPresenter;
-import com.lofty.longan.presenter.contract.welcome.WelcomeContract;
+import com.lofty.longan.contract.welcome.WelcomeContract;
 
 import java.util.concurrent.TimeUnit;
 

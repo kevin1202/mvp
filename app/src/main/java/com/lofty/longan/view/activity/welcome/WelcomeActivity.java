@@ -7,7 +7,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.lofty.longan.R;
 import com.lofty.longan.base.BaseActivity;
 import com.lofty.longan.base.RxPresenter;
-import com.lofty.longan.presenter.contract.welcome.WelcomeContract;
+import com.lofty.longan.contract.welcome.WelcomeContract;
 import com.lofty.longan.presenter.welcome.WelcomePresenter;
 import com.lofty.longan.view.activity.home.MainActivity;
 import com.lofty.longan.utils.FrescoUtils;

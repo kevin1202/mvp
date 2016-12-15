@@ -3,9 +3,8 @@ package com.lofty.longan.model.bean;
 
 public class BaseResponse<T> {
 
-    private int code;
-    private String message;
-    private T data;
+    protected int code;
+    protected T data;
 
     public int getCode() {
         return code;
@@ -13,10 +12,6 @@ public class BaseResponse<T> {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setData(T data) {
@@ -27,7 +22,4 @@ public class BaseResponse<T> {
         return data;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
