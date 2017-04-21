@@ -2,14 +2,16 @@ package com.lofty.longan.presenter.welcome;
 
 import com.lofty.longan.base.RxPresenter;
 import com.lofty.longan.contract.welcome.WelcomeContract;
+import com.lofty.longan.model.net.RxSchedulers;
 
 import java.util.concurrent.TimeUnit;
 
-import rx.Observable;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+
 
 public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implements WelcomeContract.Presenter {
 
@@ -21,20 +23,20 @@ public class WelcomePresenter extends RxPresenter<WelcomeContract.View> implemen
     }
 
     private void startCountDown() {
-        Subscription rxSubscription = Observable.timer(3000, TimeUnit.MILLISECONDS)
-                .compose(new Observable.Transformer<Long, Long>() {
+        Disposable disposable = Observable.timer(3000, TimeUnit.MILLISECONDS)
+                .compose(new ObservableTransformer<Long, Long>() {
                     @Override
-                    public Observable<Long> call(Observable<Long> observable) {
-                        return observable.subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread());
+                    public ObservableSource<Long> apply(Observable<Long> observable) {
+                        return observable.compose(RxSchedulers.<Long>io_main());
                     }
                 })
-                .subscribe(new Action1<Long>() {
+                .subscribe(new Consumer<Long>() {
                     @Override
-                    public void call(Long aLong) {
+                    public void accept(Long aLong) throws Exception {
                         view.jumpToMain();
                     }
+
                 });
-        addSubscrebe(rxSubscription);
+        addDisposable(disposable);
     }
 }

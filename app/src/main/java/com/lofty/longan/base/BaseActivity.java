@@ -10,7 +10,7 @@ import com.lofty.longan.app.AppManager;
 /**
  * MVP activity基类
  */
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity<T extends RxPresenter> extends AppCompatActivity implements BaseView {
 
     protected T presenter;
     protected Activity activity;
@@ -23,6 +23,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         presenter = (T) getPresenter();
         if (presenter != null)
             presenter.attachView(this);
+        presenter.checkViewAttached();
         initView();
         initData();
         AppManager.getAppManager().addActivity(this);

@@ -1,6 +1,7 @@
 package com.lofty.longan.view.activity.welcome;
 
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.blankj.utilcode.utils.BarUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -9,8 +10,8 @@ import com.lofty.longan.base.BaseActivity;
 import com.lofty.longan.base.RxPresenter;
 import com.lofty.longan.contract.welcome.WelcomeContract;
 import com.lofty.longan.presenter.welcome.WelcomePresenter;
-import com.lofty.longan.view.activity.home.MainActivity;
 import com.lofty.longan.utils.FrescoUtils;
+import com.lofty.longan.view.activity.home.MainActivity;
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View {
 
@@ -50,5 +51,16 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     public void jumpToMain() {
         startActivity(new Intent(this, MainActivity.class));
         this.finish();
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.detachView();
+        super.onDestroy();
     }
 }

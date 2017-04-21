@@ -1,7 +1,7 @@
 package com.lofty.longan.view.activity.home;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.lofty.longan.R;
 
