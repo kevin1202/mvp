@@ -3,13 +3,14 @@ package com.lofty.longan.model.net;
 import android.net.ParseException;
 
 import com.google.gson.JsonParseException;
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
 
 import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
 
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+
+import retrofit2.HttpException;
 
 
 public class ExceptionHandle {
@@ -129,9 +130,14 @@ public class ExceptionHandle {
         }
     }
 
-    public class ServerException extends RuntimeException {
+    public static class ServerException extends RuntimeException {
         public int code;
         public String msg;
+
+        public ServerException(int code, String msg) {
+            this.code = code;
+            this.msg = msg;
+        }
     }
 }
 

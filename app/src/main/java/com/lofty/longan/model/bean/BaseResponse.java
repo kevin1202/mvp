@@ -32,4 +32,8 @@ public class BaseResponse<T> implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public boolean isOk() {
+        return code == 0;
+    }
 }

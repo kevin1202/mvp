@@ -21,7 +21,8 @@ public class RetrofitHelper {
             // .sslSocketFactory(TrustManager.getUnsafeOkHttpClient())
             // .hostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER)
             //打印日志
-            .addInterceptor(interceptor)
+            .addInterceptor(new SecurityInterceptor())
+            // .addInterceptor(interceptor)
             //设置Cache
             //  .addNetworkInterceptor(cacheInterceptor)//缓存方面需要加入这个拦截器
             // .addInterceptor(cacheInterceptor)
@@ -39,13 +40,10 @@ public class RetrofitHelper {
     }
 
     public static <T> T createApi(Class<T> clazz, String url) {
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit.create(clazz);

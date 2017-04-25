@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 /**
  * MVP Fragment基类
  */
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
+public abstract class BaseFragment extends Fragment {
 
-    protected T presenter;
-    protected View view;
     protected Activity activity;
     protected Context context;
     protected boolean isInited = false;
@@ -30,7 +28,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(getLayoutId(), null);
+        View view = inflater.inflate(getLayoutId(), null);
         initView(view);
         return view;
     }
@@ -38,8 +36,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = (T) getPresenter();
-        presenter.attachView(this);
         if (!isHidden()) {
             isInited = true;
             initEventAndData();
@@ -55,22 +51,10 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (presenter != null) presenter.detachView();
-    }
-
     protected abstract void initView(View view);
 
     protected abstract int getLayoutId();
 
     protected abstract void initEventAndData();
 
-    protected abstract BasePresenter getPresenter();
 }

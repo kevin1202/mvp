@@ -11,7 +11,6 @@ public class RxManage {
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();// 管理订阅者者
 
-
     public void add(Disposable disposable) {
         compositeDisposable.add(disposable);
     }

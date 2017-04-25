@@ -5,9 +5,9 @@ package com.lofty.longan.base;
  * Every presenter in the app must either implement this interface or extend BasePresenter
  * indicating the MvpView type that wants to be attached with.
  */
-public interface BasePresenter<V extends BaseView> {
+public interface BasePresenter {
 
-    void attachView(V view);
+    void subscribe();
 
-    void detachView();
+    void unsubscribe();
 }
