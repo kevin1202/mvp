@@ -57,5 +57,6 @@ dependencies {
     // 支持 WebP （静态图+动图），需要添加
     compile 'com.facebook.fresco:animated-webp:0.14.1'
     compile 'com.facebook.fresco:webpsupport:0.14.1'
-
+    // 抓取奔溃日志
+    compile 'ch.acra:acra:4.9.2'
 }

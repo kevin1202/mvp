@@ -54,7 +54,6 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     public void initView() {
         mLoadingView = (CommonLoadingView) findViewById(R.id.loadingView);
-
         mLoadingView.setLoadingHandler(new CommonLoadingView.LoadingHandler() {
             @Override
             public void doRequestData() {
@@ -69,21 +68,20 @@ public class MainActivity extends BaseActivity implements MainContract.View {
             }
         });
         rvBooks = (RecyclerView) findViewById(R.id.recycler_view);
-
     }
 
     private void getBookList() {
         mLoadingView.load();
-        Observable.timer(3, TimeUnit.SECONDS)
+        Observable.timer(1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
 
                     @Override
                     public void accept(Long aLong) throws Exception {
+                        new NumberFormatException("a string not format long");
                         presenter.getBookList();
                     }
                 });
-
     }
 
     protected void initData() {
@@ -111,7 +109,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     public void setPresenter(MainContract.Presenter presenter) {
-        this.presenter = presenter;
+         // this.presenter = presenter;
     }
 
     @Override
