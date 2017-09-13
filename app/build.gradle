@@ -32,16 +32,14 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
-                def oldFile = output.outputFile
-                def apkName
-                if (variant.buildType.name.equals('release')) {
-                    apkName = getProductName() + "_v${defaultConfig.versionName}_${packagingTime()}_" + 'release.apk'
-                } else if (variant.buildType.name.equals('debug')) {
-                    apkName = getProductName() + "_v${defaultConfig.versionName}_" + 'debug.apk'
+                def apk = output.outputFile
+                if (apk != null && apk.name.endsWith('.apk')) {
+                    def fileName = "cmfchina_v${defaultConfig.versionName}_${packagingTime()}.apk"
+                    output.outputFile = new File(apk.parent + "/package", fileName)
                 }
-                output.outputFile = new File(oldFile.parent, apkName)
             }
         }
     }
