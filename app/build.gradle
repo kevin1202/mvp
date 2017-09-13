@@ -1,5 +1,14 @@
 apply plugin: 'com.android.application'
 
+//获取产品的名字
+def getProductName() {
+    return "qzbl"
+}
+//获取当前系统的时间
+def packagingTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
@@ -22,6 +31,19 @@ android {
             buildConfigField("boolean", "ISDEBUG", "false")//是否输出LOG信息
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def oldFile = output.outputFile
+            def apkName
+            if (variant.buildType.name.equals('release')) {
+                apkName = getProductName() + "_v${defaultConfig.versionName}_${packagingTime()}_" + 'release.apk'
+            } else if (variant.buildType.name.equals('debug')) {
+                apkName = getProductName() + "_v${defaultConfig.versionName}_" + 'debug.apk'
+            }
+            output.outputFile = new File(oldFile.parent, apkName)
         }
     }
 }
