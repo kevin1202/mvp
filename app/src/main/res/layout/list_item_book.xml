@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:orientation="horizontal">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_book_cover"
+        android:layout_width="105dp"
+        android:layout_height="140dp"
+        fresco:fadeDuration="300"
+        fresco:viewAspectRatio="0.7" />
+
+    <LinearLayout
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_book_name"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            tools:text="虹色妖姬" />
+
+        <TextView
+            android:id="@+id/tv_book_type"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            tools:text="虹色妖姬" />
+
+        <TextView
+            android:id="@+id/tv_book_area"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            tools:text="虹色妖姬" />
+
+        <TextView
+            android:id="@+id/tv_book_date"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            tools:text="虹色妖姬" />
+
+    </LinearLayout>
+
+</LinearLayout>

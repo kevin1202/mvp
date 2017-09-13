@@ -1,11 +1,13 @@
 package com.lofty.longan.model.bean;
 
 
-public class BaseResponse<T> {
+import java.io.Serializable;
 
-    private int code;
-    private String message;
-    private T data;
+public class BaseResponse<T> implements Serializable {
+
+    protected int code;
+    protected T data;
+    protected String msg;
 
     public int getCode() {
         return code;
@@ -13,10 +15,6 @@ public class BaseResponse<T> {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setData(T data) {
@@ -27,7 +25,15 @@ public class BaseResponse<T> {
         return data;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public boolean isOk() {
+        return code == 0;
     }
 }
